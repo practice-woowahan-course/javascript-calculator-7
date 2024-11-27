@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import MESSAGE from '../constants/Message.js';
-import InputValidator from '../utils/InputValidator.js';
+import { InputValidator } from '../utils/Validator.js';
 
 class InputView {
   static async inputStringNumber() {

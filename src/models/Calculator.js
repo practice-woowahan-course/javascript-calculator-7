@@ -1,5 +1,6 @@
 import DEFINITION from '../constants/Definition.js';
 import Parser from '../utils/Parser.js';
+import { InputValidator } from '../utils/Validator.js';
 
 class Calculator {
   #delimiter;
@@ -24,6 +25,7 @@ class Calculator {
     const inputContent = this.processDelimiter(input);
     const splitedArray = this.splitInputString(inputContent);
     const parsedNumberArray = Parser.toNumberArray(splitedArray);
+    InputValidator.isPositiveElement(parsedNumberArray);
     const additionResult = this.sumArray(parsedNumberArray);
 
     return additionResult;
@@ -58,6 +60,7 @@ class Calculator {
     const startIndex = input.indexOf(DEFINITION.DELIMITER.START);
     const endIndex = input.indexOf(DEFINITION.DELIMITER.END);
     const customDelimiter = input.substring(startIndex + 2, endIndex);
+    InputValidator.isDecimalPoint(customDelimiter);
 
     return customDelimiter;
   }

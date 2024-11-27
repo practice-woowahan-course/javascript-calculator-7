@@ -1,6 +1,6 @@
 import MESSAGE from '../constants/Message.js';
 
-const InputValidator = {
+export const InputValidator = {
   isEmpty: (input) => {
     if (input === null || input.trim().length === 0 || !input) {
       throw new Error(MESSAGE.ERROR.IS_EMPTY);
@@ -12,6 +12,15 @@ const InputValidator = {
       throw new Error(MESSAGE.ERROR.CANT_BE_NUMBER);
     }
   },
+  isPositiveElement: (inputArray) => {
+    const isPositive = inputArray.every((input) => input > 0);
+    if (!isPositive) {
+      throw new Error(MESSAGE.ERROR.NOT_POSITIVE_NUMBER);
+    }
+  },
+  isDecimalPoint: (input) => {
+    if (input === '.') {
+      throw new Error(MESSAGE.ERROR.DECIMALPOINT);
+    }
+  },
 };
-
-export default InputValidator;
