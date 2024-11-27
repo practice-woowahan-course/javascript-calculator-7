@@ -1,3 +1,4 @@
+import DEFINITION from '../constants/Definition.js';
 import Parser from '../utils/Parser.js';
 
 class Calculator {
@@ -8,7 +9,10 @@ class Calculator {
     this.#delimiter = [];
     this.#validate = {
       isCustomDelimiter: (input) => {
-        if (input.startsWith('//') && input.includes('\\n')) {
+        if (
+          input.startsWith(DEFINITION.DELIMITER.START) &&
+          input.includes(DEFINITION.DELIMITER.END)
+        ) {
           return true;
         }
         return false;
@@ -20,8 +24,9 @@ class Calculator {
     const inputContent = this.processDelimiter(input);
     const splitedArray = this.splitInputString(inputContent);
     const parsedNumberArray = Parser.toNumberArray(splitedArray);
+    const additionResult = this.sumArray(parsedNumberArray);
 
-    return parsedNumberArray;
+    return additionResult;
   }
 
   splitInputString(input) {
@@ -39,7 +44,10 @@ class Calculator {
   }
 
   createRegExpDelimiter(input) {
-    const delimiters = [',', ':'];
+    const delimiters = [
+      DEFINITION.DELIMITER.DEFAULT_1,
+      DEFINITION.DELIMITER.DEFAULT_2,
+    ];
     if (this.#validate.isCustomDelimiter(input)) {
       delimiters.push(this.extractCustomDelimiter(input));
     }
@@ -47,16 +55,22 @@ class Calculator {
   }
 
   extractCustomDelimiter(input) {
-    const startDefinition = input.indexOf('//');
-    const endDefinition = input.indexOf('\\n');
-    const customDelimiter = input.substring(startDefinition + 2, endDefinition);
+    const startIndex = input.indexOf(DEFINITION.DELIMITER.START);
+    const endIndex = input.indexOf(DEFINITION.DELIMITER.END);
+    const customDelimiter = input.substring(startIndex + 2, endIndex);
 
     return customDelimiter;
   }
 
   eraseDefinitionString(input) {
-    const erasedResult = input.substring(input.indexOf('\\n') + 2);
+    const erasedResult = input.substring(
+      input.indexOf(DEFINITION.DELIMITER.END) + 2,
+    );
     return erasedResult;
+  }
+
+  sumArray(inputArray) {
+    return inputArray.reduce((acc, cur) => acc + cur, 0);
   }
 }
 

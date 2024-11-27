@@ -6,6 +6,9 @@ const MESSAGE = {
     IS_EMPTY: '[ERROR] 입력값이 비었습니다.\n',
     CANT_BE_NUMBER: '[ERROR] 숫자로 변환할 수 없는 값이 포함되어 있습니다.',
   },
+  OUTPUT: {
+    RESULT: (result) => `결과 : ${result}`,
+  },
 };
 
 export default MESSAGE;
