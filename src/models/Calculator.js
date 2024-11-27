@@ -1,3 +1,5 @@
+import Parser from '../utils/Parser.js';
+
 class Calculator {
   #delimiter;
   #validate;
@@ -17,8 +19,9 @@ class Calculator {
   calculate(input) {
     const inputContent = this.processDelimiter(input);
     const splitedArray = this.splitInputString(inputContent);
+    const parsedNumberArray = Parser.toNumberArray(splitedArray);
 
-    return splitedArray;
+    return parsedNumberArray;
   }
 
   splitInputString(input) {

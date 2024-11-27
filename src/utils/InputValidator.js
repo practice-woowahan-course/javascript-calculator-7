@@ -6,6 +6,12 @@ const InputValidator = {
       throw new Error(MESSAGE.ERROR.IS_EMPTY);
     }
   },
+  isNumberElement: (inputArray) => {
+    const isNumber = inputArray.every((input) => !isNaN(Number(input)));
+    if (!isNumber) {
+      throw new Error(MESSAGE.ERROR.CANT_BE_NUMBER);
+    }
+  },
 };
 
 export default InputValidator;
