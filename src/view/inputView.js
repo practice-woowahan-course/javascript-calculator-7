@@ -8,6 +8,10 @@ class CustomView {
     static async printResult(sumValue) {
         await MissionUtils.Console.print(`결과 : ${sumValue}`);
     }
+
+    static async error(){
+        await MissionUtils.Console.print('[ERROR]')
+    }
 }
 
 export default CustomView;
