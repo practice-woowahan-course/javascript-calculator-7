@@ -1,9 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
 import MESSAGE from '../constants/Message.js';
+import InputValidator from '../utils/InputValidator.js';
 
 class InputView {
   static async inputStringNumber() {
-    return await Console.readLineAsync(MESSAGE.INFO.INPUT_INFO);
+    const input = await Console.readLineAsync(MESSAGE.INFO.INPUT_INFO);
+    InputValidator.isEmpty(input);
+
+    return input;
   }
 }
 

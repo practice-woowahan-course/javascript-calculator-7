@@ -10,7 +10,9 @@ class MainController {
   }
   async start() {
     const inputStringNumber = await InputView.inputStringNumber();
-    const result = this.#calculator.splitInputString(inputStringNumber);
+    const result = this.#calculator.calculate(inputStringNumber);
+
+    Console.print(result);
   }
 }
 
