@@ -8,6 +8,13 @@ export default class InputController {
         this.input = input;
     }
 
+    playJavascriptCalculator() {
+        this.checkCustomSeparator();
+        this.splitNumberOperator();
+        this.validatePlus();
+        return this.addNumbers();
+    }
+
     checkCustomSeparator() {
         if (this.input.startsWith('//')) {
             const endIndex = this.input.indexOf('\\n');
@@ -31,8 +38,8 @@ export default class InputController {
         }
     }
 
-    addNumbers(){
-        return this.#numbers.map(Number).reduce((acc,cur) => acc + cur , 0);
+    addNumbers() {
+        return this.#numbers.map(Number).reduce((acc, cur) => acc + cur, 0);
     }
 
 }

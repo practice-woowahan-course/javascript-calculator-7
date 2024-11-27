@@ -5,10 +5,7 @@ class App {
   async run() {
     const userInput = await CustomView.getStringForAdd();
     const inputController = new InputController(userInput);
-    inputController.checkCustomSeparator();
-    inputController.splitNumberOperator();
-    inputController.validatePlus();
-    const totalResult = inputController.addNumbers();
+    const totalResult = inputController.playJavascriptCalculator();
     CustomView.printResult(totalResult);
   }
 }
